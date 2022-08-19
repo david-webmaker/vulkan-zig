@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ stage2 ]
   pull_request:
-    branches: [ master ]
+    branches: [ stage2 ]
   schedule:
     - cron: '0 6 * * *'
 
@@ -37,7 +37,7 @@ jobs:
 
     - name: Build with latest zig & vk.xml
       run: |
-        zig build -Dvulkan-registry=./vk.xml
+        zig build -fno-stage1 -Dvulkan-registry=./vk.xml
 
     - name: Archive vk.xml
       uses: actions/upload-artifact@v2
